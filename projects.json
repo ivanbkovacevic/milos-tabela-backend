@@ -1,0 +1,83 @@
+[
+  {
+    "name": "Red light",
+    "productPage": [
+      "www.sonicglow.com",
+      "www.nike.com"
+    ],
+    "articlePage": [
+      "www.adidas.com",
+      "www.ferrari.com"
+    ],
+    "email": "some@email.com",
+    "pageLink": "www.sonicglow.com",
+    "productImg": "../../assets/red-light.jpg",
+    "id": "5"
+  },
+  {
+    "name": "rrr",
+    "productImg": "http://localhost:5000/uploads/mishaidusan.jpg",
+    "productPage": [
+      "rrr"
+    ],
+    "articlePage": [
+      "rrr"
+    ],
+    "email": "rrr@gg.com",
+    "pageLink": "rrr",
+    "id": "762a2d19-c94c-4ef0-83d5-20c2ac388ee0"
+  },
+  {
+    "name": "ewqeq",
+    "productImg": "../../assets/novi-plakat04abc.jpg",
+    "productPage": [
+      "few"
+    ],
+    "articlePage": [
+      "fewf"
+    ],
+    "email": "ewqeq@ds.co",
+    "pageLink": "ewq",
+    "id": "8c0f6a17-a4d3-4fd6-8bfb-5f900ceb5b08"
+  },
+  {
+    "name": "qrq",
+    "productImg": "../../assets/_MG_5284.JPG",
+    "productPage": [
+      "few"
+    ],
+    "articlePage": [
+      "few"
+    ],
+    "email": "ewqeq@fwf",
+    "pageLink": "few",
+    "id": "4d62a41a-8dbb-473c-a80d-a4aa8863a082"
+  },
+  {
+    "name": "dwqdq",
+    "productImg": "../../assets/images.png",
+    "productPage": [
+      "wwww"
+    ],
+    "articlePage": [
+      "wwwww",
+      "wwwww"
+    ],
+    "email": "dwqdwq@wfw.oc",
+    "pageLink": "ewqqww",
+    "id": "0ac7fba0-4c39-470f-b501-79786ae58ed8"
+  },
+  {
+    "name": "fwfew",
+    "productImg": "../../assets/images.png",
+    "productPage": [
+      "fewfw"
+    ],
+    "articlePage": [
+      "fewfwf"
+    ],
+    "email": "fwfw@ffa.co",
+    "pageLink": "fewfew",
+    "id": "64b08371-e725-422b-80b4-c97d6628a072"
+  }
+]
