@@ -13,7 +13,7 @@ import pkgg from 'mongoose';
 const {
     connection
 } = pkgg;
-import ProjectModel from './model.js';
+import ProjectModel from './Models/Project.js';
 import {
     readFile,
     writeFile
