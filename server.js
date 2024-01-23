@@ -90,6 +90,7 @@ const editProject = async (req, res) => {
         console.error('Error saving new project:', error);
     }
 }
+
 const deleteProject = async (req, res) => {
     const item = req.body;
     try {
@@ -106,7 +107,6 @@ const deleteProject = async (req, res) => {
                 'message': `No project with that id ${item._id}`
             })
         }
-   
         const result = await project.deleteOne({_id:item._id});
         res.json(result);
         console.log('Project deleted:', result);
@@ -120,7 +120,7 @@ app.post('/api/items/new', (req, res) => {
 });
 
 // PUT: Update an existing item
-app.put('/api/items', (req, res) => {
+app.post('/api/items', (req, res) => {
     const item = req.body;
     editProject(req, res);
 });
