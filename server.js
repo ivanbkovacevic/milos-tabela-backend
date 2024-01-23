@@ -1,16 +1,27 @@
 import express from 'express';
-import { fileURLToPath } from 'url';
+import {
+    fileURLToPath
+} from 'url';
 import pkg from 'body-parser';
 import multer from 'multer';
-import { dirname } from 'path';
+import {
+    dirname
+} from 'path';
 import path from 'path';
 import mongoose from 'mongoose';
-import ProjectsModel from './model.js';
+import pkgg from 'mongoose';
+const {
+    connection
+} = pkgg;
+import ProjectModel from './model.js';
 import {
     readFile,
     writeFile
 } from 'fs/promises';
 import dotenv from 'dotenv';
+import {
+    connectionDB
+} from './connectionDB.js';
 
 dotenv.config();
 const {
@@ -19,126 +30,110 @@ const {
 const app = express();
 const PORT = 5000;
 
-const __filename = fileURLToPath(import.meta.url);
+const __filename = fileURLToPath(
+    import.meta.url);
 const __dirname = dirname(__filename);
 
 const dataFilePath = './projects.json';
 
-// Middleware to parse JSON requests
 app.use(json());
-
-// Initialize data from the JSON file
-let data = [];
-
-// async function loadData() {
-//     try {
-//         const fileContent = await readFile(dataFilePath, 'utf-8');
-//         data = JSON.parse(fileContent);
-//     } catch (error) {
-//         console.error('Error loading data from the file', error);
-//     }
-// }
-
-// async function saveData() {
-//     try {
-//         await writeFile(dataFilePath, JSON.stringify(data, null, 2));
-//     } catch (error) {
-//         console.error('Error saving data to the file', error);
-//     }
-// }
-
-// // Load initial data
-// loadData();
-
-// const storage = multer.diskStorage({
-//     destination: function (req, file, cb) {
-//         cb(null, './uploads'); // specify the upload directory
-//     },
-//     filename: function (req, file, cb) {
-//         const nameImg = file.originalname.replace(/\s/g, '');
-//         console.log('REQIDDDDDD', nameImg)
-
-//         cb(null, nameImg);
-//     },
-// });
-
-// // Initialize Multer with the storage configuration
-// const upload = multer({
-//     storage: storage
-// });
-
-  // Define a MongoDB model (replace 'YourModel' and 'yourcollection' with your actual model and collection names)
-const ProjectsMongooseModel = mongoose.model('ProjectsModel', new mongoose.Schema({}), 'Projects');
-
-async function fetchData() {
-    try {
-      // Connect to MongoDB Atlas
-      await mongoose.connect(process.env.MONGO_STRING, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      });
-  
-      // Find all documents in the collection
-      const documents = await ProjectsMongooseModel.find({}).exec();
-     return documents;
-    } catch (error) {
-      console.error('Error:', error);
-    } finally {
-      // Close the connection
-      mongoose.disconnect();
-    }
-  }
-  
-
-  //////////////////////////////////////////////////////////////
+connectionDB();
 
 // GET: Retrieve all items
-app.get('/api/items', (req, res) => {
+app.get('/api/items', async (req, res) => {
+    const data = await ProjectModel.find();
+    if (!data) return res.status(204).json({
+        'message': 'No projects found'
+    })
     res.json(data);
 });
 
 // POST: Create a new item
-app.post('/api/items', (req, res) => {
+
+const addNewProject = async (req, res) => {
     const newItem = req.body;
-    data.push(newItem);
-    saveData().then(() => res.json(newItem));
+    try {
+        const newProject = await ProjectModel.create(newItem);
+        console.log('New project saved:', newProject);
+        res.status(201).json(newProject);
+    } catch (error) {
+        console.error('Error saving new project:', error);
+    }
+}
+const editProject = async (req, res) => {
+    const item = req.body;
+    try {
+        if (!item?._id) {
+            return res.status(400).json({
+                'message': 'id required'
+            })
+        }
+        const project = await ProjectModel.findOne({
+            _id: item._id
+        }).exec();
+        if (!project) {
+            return res.status(204).json({
+                'message': `No project with that id ${item._id}`
+            })
+        }
+        if (item?.name) project.name = item.name;
+        if (item?.productImg) project.productImg = item.productImg !== null ? item.productImg : '/miising iamge';
+        if (item?.productPage) project.productPage = item.productPage;
+        if (item?.articlePage) project.articlePage = item.articlePage;
+        if (item?.email) project.email = item.email;
+        if (item?.pageLink) project.pageLink = item.pageLink;
+
+        const result = await project.save();
+        res.json(result);
+        console.log('Project edited:', result);
+    } catch (error) {
+        console.error('Error saving new project:', error);
+    }
+}
+const deleteProject = async (req, res) => {
+    const item = req.body;
+    try {
+        if (!item?._id) {
+            return res.status(400).json({
+                'message': 'Project id is required'
+            })
+        }
+        const project = await ProjectModel.findOne({
+            _id: item._id
+        }).exec();
+        if (!project) {
+            return res.status(204).json({
+                'message': `No project with that id ${item._id}`
+            })
+        }
+   
+        const result = await project.deleteOne({_id:item._id});
+        res.json(result);
+        console.log('Project deleted:', result);
+    } catch (error) {
+        console.error('Error deleting new project:', error);
+    }
+}
+
+app.post('/api/items/new', (req, res) => {
+    addNewProject(req, res)
 });
 
 // PUT: Update an existing item
-app.put('/api/items/:id', (req, res) => {
-    const itemId = req.params.id;
-    const updatedItem = req.body;
-    data = data.map(item => (item.id === itemId ? updatedItem : item));
-    saveData().then(() => res.json(updatedItem));
+app.put('/api/items', (req, res) => {
+    const item = req.body;
+    editProject(req, res);
 });
 
 // DELETE: Delete an item
-app.delete('/api/items/:id', (req, res) => {
-    const itemId = req.params.id;
-    data = data.filter(item => item.id !== itemId);
-    saveData().then(() => res.json({
-        message: 'Item deleted successfully'
-    }));
+app.post('/api/items/delete', (req, res) => {
+    deleteProject(req,res)
 });
 
-
-
-app.get('/', (req, res) => {
-    // res.sendFile(__dirname + '/index.html');
-    const data = fetchData();
-    res.send(data)
-});
-
-//Handle image upload
-// app.post('/upload', upload.single('productImg'), (req, res) => {
-//     if (!req.file) {
-//         return res.status(400).send('No file uploaded.');
-//     }
-//     res.send('File uploaded successfully: ' + req.file.filename);
-// });
-
-// app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 // Start the server
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+connection.once('open', () => {
+    console.log('Connected to MongoDB');
+    app.listen(PORT, () => {
+        console.log(`Server is running on http://localhost:${PORT}`);
+    });
 });

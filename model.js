@@ -4,17 +4,17 @@ import {
 } from 'mongoose';
 
 // Define a schema for your document
-const projectsSchema = new Schema(  {
+const projectSchema = new Schema({
     name: String,
+    productImg: String,
     productPage: Array,
     articlePage: Array,
     email: String,
     pageLink: String,
-    productImg: String,
-  },);
+}, );
 
 // Create a Mongoose model based on the schema
-const ProjectsModel = model('Employee', projectsSchema);
+const ProjectModel = model('Project', projectSchema);
 
 // Export the model to use in other parts of your application
-export default ProjectsModel;
+export default ProjectModel;
