@@ -1,57 +1,30 @@
 [
   {
-    "name": "Red light",
+    "name": "test",
+    "productImg": "/uploads/294554042_10226740390389308_7874598011433884959_n.jpeg",
     "productPage": [
-      "www.sonicglow.com",
-      "www.nike.com"
-    ],
-    "articlePage": [
-      "www.adidas.com",
-      "www.ferrari.com"
-    ],
-    "email": "some@email.com",
-    "pageLink": "www.sonicglow.com",
-    "productImg": "../../assets/red-light.jpg",
-    "id": "5"
-  },
-  {
-    "name": "qrq",
-    "productImg": "../../assets/_MG_5284.JPG",
-    "productPage": [
-      "few"
+      "dqew"
     ],
     "articlePage": [
       "few"
     ],
-    "email": "ewqeq@fwf",
-    "pageLink": "few",
-    "id": "4d62a41a-8dbb-473c-a80d-a4aa8863a082"
+    "email": "tes@te.co",
+    "pageLink": "cfqw",
+    "id": "dfac9078-03af-40fa-81c7-0fbb8d0b419d"
   },
   {
-    "name": "dwqdq",
-    "productImg": "../../assets/images.png",
+    "name": "test2",
+    "productImg": "/uploads/294991417_10226762905312167_5286995532356603942_n.jpeg",
     "productPage": [
-      "wwww"
+      "fq"
     ],
     "articlePage": [
-      "wwwww",
-      "wwwww"
+      "fqfq",
+      "fqfq",
+      "fq"
     ],
-    "email": "dwqdwq@wfw.oc",
-    "pageLink": "ewqqww",
-    "id": "0ac7fba0-4c39-470f-b501-79786ae58ed8"
-  },
-  {
-    "name": "jkkkkkkkk",
-    "productImg": "/uploads/295960108_10226762907832230_7092758130745246672_n.jpeg",
-    "productPage": [
-      "sss"
-    ],
-    "articlePage": [
-      "sss"
-    ],
-    "email": "ssss@gmail.com",
-    "pageLink": "sss",
-    "id": "6"
+    "email": "tes@aa.co",
+    "pageLink": "feq",
+    "id": "a0405b23-46e1-4c25-9c7a-39f269e8f8f4"
   }
 ]
