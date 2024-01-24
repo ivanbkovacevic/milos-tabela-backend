@@ -53,8 +53,6 @@ const storage = multer.diskStorage({
     },
     filename: function (req, file, cb) {
         const nameImg = file.originalname.replace(/\s/g, '');
-        console.log('REQIDDDDDD', nameImg)
-
         cb(null, nameImg);
     },
 });
@@ -70,14 +68,15 @@ app.get('/api/items', (req, res) => {
 });
 
 // POST: Create a new item
-app.post('/api/items', (req, res) => {
+app.post('/api/items/new', (req, res) => {
     const newItem = req.body;
     data.push(newItem);
     saveData().then(() => res.json(newItem));
 });
 
 // PUT: Update an existing item
-app.put('/api/items/:id', (req, res) => {
+app.post('/api/items/edit/:id', (req, res) => {
+    console.log('VALUES to edit', req.body)
     const itemId = req.params.id;
     const updatedItem = req.body;
     data = data.map(item => (item.id === itemId ? updatedItem : item));
@@ -85,7 +84,7 @@ app.put('/api/items/:id', (req, res) => {
 });
 
 // DELETE: Delete an item
-app.delete('/api/items/:id', (req, res) => {
+app.delete('/api/items/delete/:id', (req, res) => {
     const itemId = req.params.id;
     data = data.filter(item => item.id !== itemId);
     saveData().then(() => res.json({
@@ -100,7 +99,7 @@ app.get('/', (req, res) => {
 });
 
 //Handle image upload
-app.post('/upload', upload.single('productImg'), (req, res) => {
+app.post('/uploadImage', upload.single('productImg'), (req, res) => {
     if (!req.file) {
         return res.status(400).send('No file uploaded.');
     }

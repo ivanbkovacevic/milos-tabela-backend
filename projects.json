@@ -15,32 +15,6 @@
     "id": "5"
   },
   {
-    "name": "rrr",
-    "productImg": "http://localhost:5000/uploads/mishaidusan.jpg",
-    "productPage": [
-      "rrr"
-    ],
-    "articlePage": [
-      "rrr"
-    ],
-    "email": "rrr@gg.com",
-    "pageLink": "rrr",
-    "id": "762a2d19-c94c-4ef0-83d5-20c2ac388ee0"
-  },
-  {
-    "name": "ewqeq",
-    "productImg": "../../assets/novi-plakat04abc.jpg",
-    "productPage": [
-      "few"
-    ],
-    "articlePage": [
-      "fewf"
-    ],
-    "email": "ewqeq@ds.co",
-    "pageLink": "ewq",
-    "id": "8c0f6a17-a4d3-4fd6-8bfb-5f900ceb5b08"
-  },
-  {
     "name": "qrq",
     "productImg": "../../assets/_MG_5284.JPG",
     "productPage": [
@@ -68,16 +42,55 @@
     "id": "0ac7fba0-4c39-470f-b501-79786ae58ed8"
   },
   {
-    "name": "fwfew",
-    "productImg": "../../assets/images.png",
+    "name": "dsad",
+    "productImg": "/uploads/aifamily.jpeg",
     "productPage": [
-      "fewfw"
+      "dsa"
     ],
     "articlePage": [
-      "fewfwf"
+      "dsa"
     ],
-    "email": "fwfw@ffa.co",
-    "pageLink": "fewfew",
-    "id": "64b08371-e725-422b-80b4-c97d6628a072"
+    "email": "dsada@gmail.co",
+    "pageLink": "dsa",
+    "id": "7"
+  },
+  {
+    "name": "jkkkkkkkk",
+    "productImg": "/uploads/295960108_10226762907832230_7092758130745246672_n.jpeg",
+    "productPage": [
+      "sss"
+    ],
+    "articlePage": [
+      "sss"
+    ],
+    "email": "ssss@gmail.com",
+    "pageLink": "sss",
+    "id": "6"
+  },
+  {
+    "name": "8",
+    "productImg": "/uploads/kukazaprikolicu.jpg",
+    "productPage": [
+      "ewqewq"
+    ],
+    "articlePage": [
+      "ewqewq"
+    ],
+    "email": "qqwwq@gmail.com",
+    "pageLink": "ewqew",
+    "id": "0271a514-561c-468b-a82d-0958832f01d6"
+  },
+  {
+    "name": "ee",
+    "productImg": "/uploads/mafija5i3god.jpg",
+    "productPage": [
+      "erw"
+    ],
+    "articlePage": [
+      "erw"
+    ],
+    "email": "11111@fma.co",
+    "pageLink": "erw",
+    "id": "908ea41c-105f-437b-89e9-121308b74134"
   }
 ]
