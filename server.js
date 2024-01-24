@@ -7,7 +7,7 @@ import path from 'path';
 
 import {
     readFile,
-    writeFile
+    writeFile,unlink
 } from 'fs/promises';
 
 const {
@@ -104,6 +104,15 @@ app.post('/uploadImage', upload.single('productImg'), (req, res) => {
         return res.status(400).send('No file uploaded.');
     }
     res.send('File uploaded successfully: ' + req.file.filename);
+});
+
+//Handle image delete
+app.delete('/deleteImage/:imgName', async (req, res) => {
+    const imgName = req.params.imgName;
+    console.log('DELETE', imgName);
+    const imagePath = path.join('./uploads', imgName);
+    await unlink(imagePath);
+    res.send('Image deleted successfully: ' + imgName);
 });
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
