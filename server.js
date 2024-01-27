@@ -4,6 +4,7 @@ import pkg from 'body-parser';
 import multer from 'multer';
 import { dirname } from 'path';
 import path from 'path';
+import cors from 'cors';
 
 import {
     readFile,
@@ -14,7 +15,9 @@ const {
     json
 } = pkg;
 const app = express();
+app.use(cors());
 const PORT = 5000;
+;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -24,7 +27,7 @@ const dataFilePath = './projects.json';
 // Middleware to parse JSON requests
 app.use(json());
 
-// Initialize data from the JSON file
+// Initialize data from the JSON fil
 let data = [];
 
 async function loadData() {
@@ -76,7 +79,6 @@ app.post('/api/items/new', (req, res) => {
 
 // PUT: Update an existing item
 app.post('/api/items/edit/:id', (req, res) => {
-    console.log('VALUES to edit', req.body)
     const itemId = req.params.id;
     const updatedItem = req.body;
     data = data.map(item => (item.id === itemId ? updatedItem : item));
@@ -98,7 +100,7 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
 });
 
-//Handle image upload
+//Handle image uploa
 app.post('/uploadImage', upload.single('productImg'), (req, res) => {
     if (!req.file) {
         return res.status(400).send('No file uploaded.');
@@ -109,14 +111,17 @@ app.post('/uploadImage', upload.single('productImg'), (req, res) => {
 //Handle image delete
 app.delete('/deleteImage/:imgName', async (req, res) => {
     const imgName = req.params.imgName;
-    console.log('DELETE', imgName);
+    if (!imgName) {
+        return res.status(400).send('No image deleted');
+    }
     const imagePath = path.join('./uploads', imgName);
     await unlink(imagePath);
     res.send('Image deleted successfully: ' + imgName);
 });
 
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/uploads', express.static('uploads'));
 // Start the server
+  
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
